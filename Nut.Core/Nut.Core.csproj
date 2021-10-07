@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CB7B06A9-2EAE-49CE-8DAC-B4E6A1831495}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nut.Core</RootNamespace>
+    <AssemblyName>Nut.Core</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\INutApplication.cs" />
+    <Compile Include="Application\INutApplicationEntry.cs" />
+    <Compile Include="Application\INutApplicationLauncher.cs" />
+    <Compile Include="Application\INutApplicationSetup.cs" />
+    <Compile Include="Application\INutApplicationStart.cs" />
+    <Compile Include="Application\NutApplication.cs" />
+    <Compile Include="Application\NutApplicationLauncher.cs" />
+    <Compile Include="Application\NutApplicationSetup.cs" />
+    <Compile Include="Application\NutApplicationStart.cs" />
+    <Compile Include="Bindings\Commands\INutCommand.cs" />
+    <Compile Include="Bindings\Commands\NutCommand.cs" />
+    <Compile Include="Bindings\INutBindingContext.cs" />
+    <Compile Include="Bindings\INutBindingCreator.cs" />
+    <Compile Include="Bindings\INutBindingDescription.cs" />
+    <Compile Include="Bindings\INutBindingStore.cs" />
+    <Compile Include="Bindings\INutCollectionSource.cs" />
+    <Compile Include="Bindings\INutSourceBinding.cs" />
+    <Compile Include="Bindings\INutSourceBindingCreator.cs" />
+    <Compile Include="Bindings\NutBindingContext.cs" />
+    <Compile Include="Bindings\Extensions\NutBindingExtensions.cs" />
+    <Compile Include="Bindings\Converters\INutTargetBindingConverterContainer.cs" />
+    <Compile Include="Bindings\Converters\INutTargetBindingConverter.cs" />
+    <Compile Include="Bindings\Converters\NutTargetBindingConverterContainer.cs" />
+    <Compile Include="Bindings\Converters\NutTargetBindingInvertedBoolConverter.cs" />
+    <Compile Include="Bindings\Exceptions\NutBindingException.cs" />
+    <Compile Include="Bindings\INutBinding.cs" />
+    <Compile Include="Bindings\INutBindingChain.cs" />
+    <Compile Include="Bindings\INutTargetBinding.cs" />
+    <Compile Include="Bindings\INutTargetBindingContainer.cs" />
+    <Compile Include="Bindings\INutTargetBindingFactory.cs" />
+    <Compile Include="Bindings\NutBinding.cs" />
+    <Compile Include="Bindings\NutBindingChain.cs" />
+    <Compile Include="Bindings\NutBindingChainSet.cs" />
+    <Compile Include="Bindings\NutBindingCreator.cs" />
+    <Compile Include="Bindings\NutBindingDescription.cs" />
+    <Compile Include="Bindings\NutBindingMode.cs" />
+    <Compile Include="Bindings\NutSourceBinding.cs" />
+    <Compile Include="Bindings\NutSourceBindingCreator.cs" />
+    <Compile Include="Bindings\NutSourceSelectTargetBinding.cs" />
+    <Compile Include="Bindings\NutSourceTargetBinding.cs" />
+    <Compile Include="Bindings\NutTargetBinding.cs" />
+    <Compile Include="Bindings\NutTargetBindingFactory.cs" />
+    <Compile Include="Bindings\NutTargetBindingContainer.cs" />
+    <Compile Include="Bindings\NutTargetChangedEventArgs.cs" />
+    <Compile Include="Bindings\NutTargetColorBinding.cs" />
+    <Compile Include="Bindings\NutTargetCommandBinding.cs" />
+    <Compile Include="Bindings\NutTargetDirectBinding.cs" />
+    <Compile Include="Bindings\NutUnifiedTargetBindingConverter.cs" />
+    <Compile Include="Dependencies\INutIocProvider.cs" />
+    <Compile Include="Dependencies\NutIocProvider.cs" />
+    <Compile Include="Environment\NutPreferencesExtentions.cs" />
+    <Compile Include="Environment\INutPreferences.cs" />
+    <Compile Include="Extensions\NutApplicationExtensions.cs" />
+    <Compile Include="Extensions\NutEnumerableExtensions.cs" />
+    <Compile Include="Extensions\NutExpressionExtensions.cs" />
+    <Compile Include="Extensions\NutObjectExtensions.cs" />
+    <Compile Include="Extensions\NutReflectionExtensions.cs" />
+    <Compile Include="Extensions\NutStringExtensions.cs" />
+    <Compile Include="Logging\INutLogger.cs" />
+    <Compile Include="Logging\NutLogger.cs" />
+    <Compile Include="Logging\NutLoggerLevel.cs" />
+    <Compile Include="Messenger\INutMessenger.cs" />
+    <Compile Include="Messenger\NutMessage.cs" />
+    <Compile Include="Messenger\NutMessenger.cs" />
+    <Compile Include="Messenger\NutSubscriptionReference.cs" />
+    <Compile Include="Messenger\NutSubscriberChangeMessage.cs" />
+    <Compile Include="Messenger\NutSubscriptionToken.cs" />
+    <Compile Include="Messenger\Runners\INutMessengerRunner.cs" />
+    <Compile Include="Messenger\Runners\NutMainThreadMessengerRunner.cs" />
+    <Compile Include="Messenger\Runners\NutSimpleMessengerRunner.cs" />
+    <Compile Include="Messenger\Runners\NutThreadPoolMessengerRunner.cs" />
+    <Compile Include="Messenger\Subscriptions\NutBaseSubscription.cs" />
+    <Compile Include="Messenger\Subscriptions\NutStrongSubscription.cs" />
+    <Compile Include="Messenger\Subscriptions\NutTypedSubscription.cs" />
+    <Compile Include="Messenger\Subscriptions\NutWeakSubscription.cs" />
+    <Compile Include="Models\INutViewModel.cs" />
+    <Compile Include="Models\INutViewModelContainer.cs" />
+    <Compile Include="Models\INutViewModelCreator.cs" />
+    <Compile Include="Models\INutViewModelParamsBuilder.cs" />
+    <Compile Include="Models\NutViewModel.cs" />
+    <Compile Include="Models\NutViewModelContainer.cs" />
+    <Compile Include="Models\NutViewModelCreator.cs" />
+    <Compile Include="Models\NutViewModelParamsBuilder.cs" />
+    <Compile Include="Models\NutViewModelRequest.cs" />
+    <Compile Include="Models\NutViewModelRequestMode.cs" />
+    <Compile Include="Models\Validation\INutValidatable.cs" />
+    <Compile Include="Models\Validation\INutValidator.cs" />
+    <Compile Include="Models\Validation\INutValidatorChain.cs" />
+    <Compile Include="Models\Validation\NutPredicateValidation.cs" />
+    <Compile Include="Models\Validation\NutLengthValidation.cs" />
+    <Compile Include="Models\Validation\NutValidationBase.cs" />
+    <Compile Include="Models\Validation\NutValidationResult.cs" />
+    <Compile Include="Models\Validation\NutValidator.cs" />
+    <Compile Include="Models\Validation\NutValidatorChain.cs" />
+    <Compile Include="Navigation\INutViewPresenter.cs" />
+    <Compile Include="Navigation\NutNavigatableObject.cs" />
+    <Compile Include="Navigation\NutNotifyPropertyChanged.cs" />
+    <Compile Include="Navigation\NutViewPresenter.cs" />
+    <Compile Include="Nuts.cs" />
+    <Compile Include="Platform\BindingFlags.cs" />
+    <Compile Include="Platform\INutGroup.cs" />
+    <Compile Include="Platform\INutMainThreadDispatcher.cs" />
+    <Compile Include="Platform\NutColor.cs" />
+    <Compile Include="Platform\NutDisposableCallback.cs" />
+    <Compile Include="Platform\NutPoller.cs" />
+    <Compile Include="Platform\NutSingleton.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\INutScreenNavigator.cs" />
+    <Compile Include="Screens\NutScreenNavigator.cs" />
+    <Compile Include="Serialization\INutSerializer.cs" />
+    <Compile Include="Serialization\NutSerializer.cs" />
+    <Compile Include="Views\INutView.cs" />
+    <Compile Include="Views\INutViewLifecycle.cs" />
+    <Compile Include="Views\INutViewMapper.cs" />
+    <Compile Include="Views\NutViewLifecycle.cs" />
+    <Compile Include="Views\NutViewMapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nut.Ioc\Nut.Ioc.csproj">
+      <Project>{6a515477-a616-4b59-a240-c3a4d0430ece}</Project>
+      <Name>Nut.Ioc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="NutGenerateIocDependencies" BeforeTargets="BeforeBuild">
+    <PropertyGroup>
+      <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)obj\$(Configuration)\</IntermediateOutputPath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+      <GeneratorExecutable>..\Nut.Ioc.Generator\bin\$(ConfigurationName)\Nut.Ioc.Generator.exe "$(IntermediateOutputPath)\NutIocDependencies.Generated.cs" "$(MSBuildProjectDirectory)" "$(AssemblyName)" "$(RootNamespace)"</GeneratorExecutable>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+      <GeneratorExecutable>mono ..\Nut.Ioc.Generator\bin\$(ConfigurationName)\Nut.Ioc.Generator.exe "$(IntermediateOutputPath)\NutIocDependencies.Generated.cs" "$(MSBuildProjectDirectory)" "$(AssemblyName)" "$(RootNamespace)"</GeneratorExecutable>
+    </PropertyGroup>
+    <Exec Command="$(GeneratorExecutable)" />
+    <Error Text="Cannot find auto generated dependencies file $(IntermediateOutputPath)\NutIocDependencies.Generated.cs" Condition="!Exists('$(IntermediateOutputPath)\NutIocDependencies.Generated.cs')" />
+    <ItemGroup>
+      <Compile Include="$(IntermediateOutputPath)\NutIocDependencies.Generated.cs" />
+    </ItemGroup>
+  </Target>
+</Project>

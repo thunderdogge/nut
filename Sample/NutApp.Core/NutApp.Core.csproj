@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9C8C7C04-602D-4A7D-B2F8-E0F12B00E91F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NutApp.Core</RootNamespace>
+    <AssemblyName>NutApp.Core</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.cs" />
+    <Compile Include="AppSerializer.cs" />
+    <Compile Include="AppStart.cs" />
+    <Compile Include="Business\BaseEntity.cs" />
+    <Compile Include="Business\IEntity.cs" />
+    <Compile Include="Business\Reminder.cs" />
+    <Compile Include="Components\IDialogAlert.cs" />
+    <Compile Include="Components\IDialogConfirm.cs" />
+    <Compile Include="Components\IDialogFactory.cs" />
+    <Compile Include="Components\INotifier.cs" />
+    <Compile Include="Components\IToaster.cs" />
+    <Compile Include="Connectivity\AppConnectivity.cs" />
+    <Compile Include="Connectivity\IAppConnectivity.cs" />
+    <Compile Include="Environment\IDeviceInformation.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\IBaseRepository.cs" />
+    <Compile Include="Repository\IReminderRepository.cs" />
+    <Compile Include="Repository\ReminderRepository.cs" />
+    <Compile Include="Screens\Data\Mocks.cs" />
+    <Compile Include="Screens\Models\BaseViewModel.cs" />
+    <Compile Include="Screens\Models\DashboardViewModel.cs" />
+    <Compile Include="Screens\Models\ReminderModifyViewModel.cs" />
+    <Compile Include="Screens\Models\ReminderItemViewModel.cs" />
+    <Compile Include="Screens\Navigation\IScreenNavigator.cs" />
+    <Compile Include="Storage\EntityStorageConnection.cs" />
+    <Compile Include="Storage\EntityStorageSerializer.cs" />
+    <Compile Include="Storage\EntityStorage.cs" />
+    <Compile Include="Storage\IEntityStorage.cs" />
+    <Compile Include="Storage\IEntityStorageSerializer.cs" />
+    <Compile Include="Storage\IEntityStorageSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Nut.Core\Nut.Core.csproj">
+      <Project>{cb7b06a9-2eae-49ce-8dac-b4e6a1831495}</Project>
+      <Name>Nut.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Nut.Ioc\Nut.Ioc.csproj">
+      <Project>{6a515477-a616-4b59-a240-c3a4d0430ece}</Project>
+      <Name>Nut.Ioc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Target Name="NutGenerateIocDependencies" BeforeTargets="BeforeBuild">
+    <PropertyGroup>
+      <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)obj\$(Configuration)\</IntermediateOutputPath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+      <GeneratorExecutable>..\..\Nut.Ioc.Generator\bin\$(ConfigurationName)\Nut.Ioc.Generator.exe "$(IntermediateOutputPath)\NutIocDependencies.Generated.cs" "$(MSBuildProjectDirectory)" "$(AssemblyName)" "$(RootNamespace)"</GeneratorExecutable>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+      <GeneratorExecutable>mono ..\..\Nut.Ioc.Generator\bin\$(ConfigurationName)\Nut.Ioc.Generator.exe "$(IntermediateOutputPath)\NutIocDependencies.Generated.cs" "$(MSBuildProjectDirectory)" "$(AssemblyName)" "$(RootNamespace)"</GeneratorExecutable>
+    </PropertyGroup>
+    <Exec Command="$(GeneratorExecutable)" />
+    <Error Text="Cannot find auto generated dependencies file $(IntermediateOutputPath)\NutIocDependencies.Generated.cs" Condition="!Exists('$(IntermediateOutputPath)\NutIocDependencies.Generated.cs')" />
+    <ItemGroup>
+      <Compile Include="$(IntermediateOutputPath)\NutIocDependencies.Generated.cs" />
+    </ItemGroup>
+  </Target>
+</Project>

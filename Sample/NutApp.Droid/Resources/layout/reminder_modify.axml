@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/toolbar" />
+    <android.support.v4.widget.NestedScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- Title -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    style="@style/Input"
+                    android:id="@+id/itemTitle"
+                    android:hint="Title"
+                    android:imeOptions="actionDone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+            <!-- Content -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    style="@style/Input"
+                    android:id="@+id/itemContent"
+                    android:hint="Content"
+                    android:imeOptions="actionDone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+            <!-- Save -->
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/saveItem"
+                android:text="Save"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/green"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <!-- Delete -->
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/deleteItem"
+                android:text="Delete"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/red"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

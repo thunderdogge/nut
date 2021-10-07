@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <CoreCompileDependsOn>
+      $(CoreCompileDependsOn);
+      NutGenerateIocDependencies;
+    </CoreCompileDependsOn>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <Target Name="NutGenerateIocDependencies" BeforeTargets="CoreCompile"> 
+    <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+      <GeneratorExecutable>"$(MSBuildThisFileDirectory)..\..\tools\Nut.Ioc.Generator.exe" "$(IntermediateOutputPath)\NutIocDependencies.Generated.cs" "$(MSBuildProjectDirectory)" "$(AssemblyName)" "$(RootNamespace)"</GeneratorExecutable>
+    </PropertyGroup>
+    
+    <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+      <GeneratorExecutable>mono "$(MSBuildThisFileDirectory)..\..\tools\Nut.Ioc.Generator.exe" "$(IntermediateOutputPath)\NutIocDependencies.Generated.cs" "$(MSBuildProjectDirectory)" "$(AssemblyName)" "$(RootNamespace)"</GeneratorExecutable>
+    </PropertyGroup>
+    
+    <Exec Command="$(GeneratorExecutable)" />
+    <Error Text="Cannot find auto generated dependencies file $(IntermediateOutputPath)\NutIocDependencies.Generated.cs" Condition="!Exists('$(IntermediateOutputPath)\NutIocDependencies.Generated.cs')" />
+   
+    <ItemGroup Condition="Exists('$(IntermediateOutputPath)\NutIocDependencies.Generated.cs')">
+        <Compile Include="$(IntermediateOutputPath)\NutIocDependencies.Generated.cs" />
+    </ItemGroup>
+  </Target>
+</Project>

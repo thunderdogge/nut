@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D5A56B95-659A-49E1-9842-C1C319F8C947}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Nut.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>Nut.iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="nutioc.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bindings\NutIosBackgroundColorTargetBinding.cs" />
+    <Compile Include="Bindings\NutIosEditDoneTargetBinding.cs" />
+    <Compile Include="Bindings\NutIosHiddenTargetBinding.cs" />
+    <Compile Include="Bindings\NutIosTapBarTargetBinding.cs" />
+    <Compile Include="Bindings\NutIosTapTargetBinding.cs" />
+    <Compile Include="Bindings\NutIosTapViewTargetBinding.cs" />
+    <Compile Include="Bindings\NutIosTextColorTargetBinding.cs" />
+    <Compile Include="Bindings\NutIosTextTargetBinding.cs" />
+    <Compile Include="Bindings\NutIosVisibilityTargetBinding.cs" />
+    <Compile Include="Bindings\NutIosImageTargetBinding.cs" />
+    <Compile Include="Components\NutToast.cs" />
+    <Compile Include="Components\NutToastGravity.cs" />
+    <Compile Include="Components\NutToastSettings.cs" />
+    <Compile Include="Controls\INutTableCell.cs" />
+    <Compile Include="Controls\NutTableGroupedViewSource.cs" />
+    <Compile Include="Controls\NutTableViewSourceBase.cs" />
+    <Compile Include="Controls\NutUIRefreshControl.cs" />
+    <Compile Include="Controls\NutTableCell.cs" />
+    <Compile Include="Controls\NutTableViewSource.cs" />
+    <Compile Include="Environment\NutIosPreferences.cs" />
+    <Compile Include="Extensions\NutIosColorExtensions.cs" />
+    <Compile Include="Extensions\NutIosDateTimeExtensions.cs" />
+    <Compile Include="Extensions\NutIosViewExtensions.cs" />
+    <Compile Include="Logging\NutIosLogger.cs" />
+    <Compile Include="NutIosLauncher.cs" />
+    <Compile Include="NutIosSetup.cs" />
+    <Compile Include="Platform\NutIosMainThreadDispatcher.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\NutIosScreenNavigator.cs" />
+    <Compile Include="Screens\NutViewController.cs" />
+    <Compile Include="Views\INutIosView.cs" />
+    <Compile Include="Views\INutIosViewLifecycle.cs" />
+    <Compile Include="Views\INutIosViewMonitor.cs" />
+    <Compile Include="Views\NutIosViewLifecycle.cs" />
+    <Compile Include="Views\NutIosViewLoader.cs" />
+    <Compile Include="Views\NutIosViewMonitor.cs" />
+    <Compile Include="Views\NutIosViewPresenter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nut.Core\Nut.Core.csproj">
+      <Project>{cb7b06a9-2eae-49ce-8dac-b4e6a1831495}</Project>
+      <Name>Nut.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nut.Ioc\Nut.Ioc.csproj">
+      <Project>{6A515477-A616-4B59-A240-C3A4D0430ECE}</Project>
+      <Name>Nut.Ioc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Target Name="NutGenerateIocDependencies" BeforeTargets="BeforeBuild">
+    <PropertyGroup>
+      <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)obj\$(Configuration)\</IntermediateOutputPath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+      <GeneratorExecutable>..\Nut.Ioc.Generator\bin\$(ConfigurationName)\Nut.Ioc.Generator.exe "$(IntermediateOutputPath)\NutIocDependencies.Generated.cs" "$(MSBuildProjectDirectory)" "$(AssemblyName)" "$(RootNamespace)"</GeneratorExecutable>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+      <GeneratorExecutable>mono ..\Nut.Ioc.Generator\bin\$(ConfigurationName)\Nut.Ioc.Generator.exe "$(IntermediateOutputPath)\NutIocDependencies.Generated.cs" "$(MSBuildProjectDirectory)" "$(AssemblyName)" "$(RootNamespace)"</GeneratorExecutable>
+    </PropertyGroup>
+    <Exec Command="$(GeneratorExecutable)" />
+    <Error Text="Cannot find auto generated dependencies file $(IntermediateOutputPath)\NutIocDependencies.Generated.cs" Condition="!Exists('$(IntermediateOutputPath)\NutIocDependencies.Generated.cs')" />
+    <ItemGroup>
+      <Compile Include="$(IntermediateOutputPath)\NutIocDependencies.Generated.cs" />
+    </ItemGroup>
+  </Target>
+</Project>

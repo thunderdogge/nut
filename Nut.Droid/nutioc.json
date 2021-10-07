@@ -1,0 +1,8 @@
+﻿{
+	"IgnorePaths": [
+		"/Bindings",
+		"/Controls",
+		"/Resources",
+		"/Screens"
+	] 
+}
